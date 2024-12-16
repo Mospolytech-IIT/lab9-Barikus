@@ -16,7 +16,7 @@ class User(Base):
     posts = relationship('Post', back_populates='user')
 
 class Post(Base):
-    "Таблица сообщений"
+    "Таблица постов"
     __tablename__ = 'posts'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -26,8 +26,7 @@ class Post(Base):
 
     user = relationship('User', back_populates='posts')
 
-DATABASE_URL = "postgresql://postgres:password@localhost:5432/postgres2"
-engine = create_engine(DATABASE_URL)
-
-# Создание таблиц
-Base.metadata.create_all(engine)
+if __name__ == "__main__":
+    DATABASE_URL = "postgresql://postgres:password@localhost:5432/postgres2"
+    engine = create_engine(DATABASE_URL)
+    Base.metadata.create_all(engine)
