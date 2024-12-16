@@ -1,7 +1,8 @@
 """Взаимодействие с базой данных"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from tables import User, Post
+from models import User, Post
+from engine import get_engine
 
 def add_data(session):
     """Добавление"""
@@ -59,8 +60,7 @@ def delete_data(session):
     session.commit()
 
 if __name__ == "__main__":
-    DATABASE_URL = "postgresql://postgres:password@localhost:5432/postgres2"
-    engine = create_engine(DATABASE_URL)
+    engine = get_engine()
     Session = sessionmaker(bind=engine)
     my_session = Session()
 

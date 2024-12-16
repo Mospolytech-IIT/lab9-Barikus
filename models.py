@@ -1,6 +1,7 @@
 """Таблицы"""
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, create_engine
 from sqlalchemy.orm import relationship, declarative_base
+from engine import get_engine
 
 Base = declarative_base()
 
@@ -27,6 +28,5 @@ class Post(Base):
     user = relationship('User', back_populates='posts')
 
 if __name__ == "__main__":
-    DATABASE_URL = "postgresql://postgres:password@localhost:5432/postgres2"
-    engine = create_engine(DATABASE_URL)
+    engine = get_engine()
     Base.metadata.create_all(engine)
